@@ -1,7 +1,3 @@
-Com certeza\! Preparei um arquivo `README.md` que você pode usar no seu repositório. Ele resume o que já foi feito e o que falta, com base nos requisitos que você me passou, e inclui o link do deploy.
-
------
-
 # **Sistema de Consulta de Livros - Desafio Técnico**
 
 Este projeto é a implementação de uma interface para consulta de livros, consumindo a [Open Library Search API](https://openlibrary.org/dev/docs/api/search). O objetivo é permitir que o usuário busque, veja detalhes e gerencie uma lista de livros favoritos.
