@@ -20,7 +20,6 @@ import {
   Stack,
 } from '@chakra-ui/react';
 
-
 export function PaginaBusca() {
   // Cria estados para controlar o texto do input, a página atual e o termo que foi de fato pesquisado.
   const [termoBusca, setTermoBusca] = useState('');
