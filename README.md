@@ -113,10 +113,9 @@ Para executar este projeto na sua máquina local, siga os passos abaixo:
 1.  **Clone o repositório:**
 
     ```bash
-    git clone https://github.com/SEU-USUARIO/NOME-DO-SEU-REPOSITORIO.git
+    git clone https://github.com/Rafaasj07/Sistema-de-Consulta-De-Livros.git
     ```
 
-      * *(Substitua `SEU-USUARIO/NOME-DO-SEU-REPOSITORIO.git` pelo caminho real do seu repositório Git).*
 
 2.  **Acesse a pasta do projeto:**
 
