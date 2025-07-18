@@ -4,7 +4,7 @@ Este projeto é a implementação de uma interface para consulta de livros, cons
 
 ## **Status do Projeto**
 
-O projeto está parcialmente concluído, com várias funcionalidades essenciais já implementadas e algumas pendentes de desenvolvimento.
+O projeto está parcialmente concluído, com todas funcionalidades essenciais já implementadas. Falta só o refinamento da estilização.
 
 ### ✅ **Funcionalidades Concluídas**
 
