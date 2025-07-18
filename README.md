@@ -39,8 +39,6 @@ O projeto está parcialmente concluído, com várias funcionalidades essenciais 
       * A stack obrigatória (**React 18, Chakra UI v2, React Query v5, Axios**) foi totalmente utilizada.
       * O deploy da aplicação foi realizado com sucesso.
 
-### ⏳ **Funcionalidades Pendentes**
-
   * **Página de Detalhes:**
 
       * A funcionalidade de clicar em um livro para abrir uma página ou modal com mais detalhes (editora, número de páginas, etc.) ainda não foi implementada.
