@@ -50,13 +50,13 @@ export function PaginaBusca() {
     setTermoAtivo(termoBusca); // Define o termo ativo, o que dispara o 'useQuery'.
   };
 
-  // Função para abrir o modal
+  // Função para abrir o modal, definindo o livro selecionado.
   function abrirModal(livro: Livro) {
     setLivroSelecionado(livro);
     setModalAberto(true);
   }
 
-  // Função para fechar o modal
+  // Função para fechar o modal, resetando o livro selecionado.
   function fecharModal() {
     setModalAberto(false);
     setLivroSelecionado(null);
@@ -79,6 +79,7 @@ export function PaginaBusca() {
         <Input
           placeholder="Digite o título do livro..."
           value={termoBusca}
+          color="	#F1F1F1"
           onChange={(e) => setTermoBusca(e.target.value)}
           size="lg"
           fontSize={{ base: 'md', md: 'xl' }}
@@ -88,7 +89,9 @@ export function PaginaBusca() {
         {/* 'Button' para submeter a busca. 'isLoading' mostra um spinner no botão durante a busca. */}
         <Button
           type="submit"
-          colorScheme="teal"
+          bg="#3C91E6" // Azul cobalto moderno
+          _hover={{ bg: '#347CC1' }} // Azul mais escuro no hover
+          color="#F1F1F1"
           isLoading={isPending && !!termoAtivo}
           size="lg"
           fontSize={{ base: 'md', md: 'xl' }}
@@ -114,7 +117,7 @@ export function PaginaBusca() {
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 5 }} gap={6}>
         {/* Mapeia os dados recebidos ('data.docs') e renderiza um 'CartaoLivro' para cada livro. */}
         {data?.docs.map((livro) => (
-          <CartaoLivro key={livro.key}  livro={livro} onClick={abrirModal} />
+          <CartaoLivro key={livro.key} livro={livro} onClick={abrirModal} />
         ))}
       </SimpleGrid>
 
@@ -133,27 +136,34 @@ export function PaginaBusca() {
         >
           {/* Botão para voltar para a página anterior. */}
           <Button
-            colorScheme="teal"
             variant="outline"
             onClick={() => setPagina((p) => Math.max(p - 1, 1))}
             isDisabled={pagina === 1}
+            borderColor="#3C91E6"
+            color="#3C91E6"
+            _hover={{
+              bg: '#347CC1',
+              color: 'white',
+              borderColor: '#347CC1',
+            }}
           >
             ← Anterior
           </Button>
 
-          {/* Exibe o número da página atual. */}
           <Text fontSize="lg" fontWeight="medium">
             Página {pagina}
           </Text>
 
-          {/* Botão para avançar para a próxima página. */}
           <Button
-            colorScheme="teal"
             onClick={() => setPagina((p) => p + 1)}
-            isDisabled={data.docs.length < 10} // Desabilitado se a página atual não estiver cheia.
+            isDisabled={data.docs.length < 10}
+            bg="#3C91E6"
+            color="white"
+            _hover={{ bg: '#347CC1' }}
           >
             Próxima →
           </Button>
+
         </Stack>
       )}
     </Box>

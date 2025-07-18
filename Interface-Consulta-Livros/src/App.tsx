@@ -12,7 +12,9 @@ import {
   DrawerCloseButton,
   DrawerHeader,
   DrawerBody,
-  useDisclosure, // Hook do Chakra para controlar estados de abre/fecha (como o Drawer).
+  useDisclosure,
+  Image,
+  HStack,
 } from '@chakra-ui/react';
 import { HiMenu } from 'react-icons/hi'; // Ícone de menu (hambúrguer).
 import { PaginaBusca } from './pages/PaginaBusca'; // Componente da página de busca.
@@ -25,23 +27,36 @@ function App() {
   // O hook 'useDisclosure' gerencia o estado (aberto/fechado) do menu mobile (Drawer).
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // O componente principal App define a estrutura da interface do usuário.
+  // Ele inclui a barra de navegação superior, o menu lateral para mobile e
+  // a área principal onde as diferentes páginas são renderizadas via roteamento.
   return (
     // 'Box' serve como container principal da aplicação.
-    <Box>
+    <Box bg="#121212" minH="100vh" color="#F1F1F1">
       {/* 'Flex' cria a barra de navegação superior, com estilos responsivos de padding. */}
       <Flex
         as="nav"
-        bg="teal.500"
+        bg="#1F1F1F"
         p={{ base: 4, md: 6 }}
-        color="white"
+        color="#F1F1F1"
         align="center"
         justify="space-between"
         shadow="md"
+        h={{ base: "95px", md: "130px" }}
       >
-        {/* Título da aplicação com tamanho de fonte responsivo. */}
-        <Heading fontSize={{ base: '2xl', md: '4xl' }} ml={2}>
-          Consulta de Livros
-        </Heading>
+        <HStack spacing={{ base: 1, md: 4 }} align="center" ml={{ base: "0", md: "2" }}>
+          {/* Título da aplicação com tamanho de fonte responsivo. */}
+          <Heading fontSize={{ base: "2xl", md: "4xl" }} color="#F1F1F1">
+            Consulta de Livros
+          </Heading>
+          {/* Logo ao lado do título */}
+          <Image
+            src="./src/assets/logo.png"
+            alt="Ícone de livro"
+            boxSize={{ base: "75px", md: "135px" }}
+            mt="2"
+          />
+        </HStack>
 
         {/* Botão de menu (hambúrguer) que só aparece em telas pequenas (mobile). */}
         <IconButton
@@ -68,7 +83,7 @@ function App() {
       {/* O Drawer (menu lateral) para a versão mobile. Controlado pelo 'useDisclosure'. */}
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent bg="teal.500" color="white">
+        <DrawerContent bg="#1E1E1E" color="white">
           <DrawerCloseButton fontSize="xl" top={4} right={5} />
           <DrawerHeader fontSize="2xl">Menu</DrawerHeader>
           <DrawerBody>
@@ -91,7 +106,7 @@ function App() {
         <Routes>
           {/* 'Route' mapeia uma URL (path) para um componente específico (element). */}
           <Route path="/" element={<PaginaBusca />} />
-          <Route path="/favoritos" element={<PaginaFavoritos/>} />
+          <Route path="/favoritos" element={<PaginaFavoritos />} />
         </Routes>
       </main>
     </Box>

@@ -13,6 +13,8 @@ interface CartaoLivroProps {
 }
 
 // Exporta um componente funcional que recebe as informações de um livro e as exibe.
+// Ele renderiza um cartão visual para cada livro, incluindo a capa, título, autor e ano,
+// além de um botão para adicionar/remover o livro dos favoritos.
 export function CartaoLivro({ livro, onClick }: CartaoLivroProps) {
   // Define a URL da imagem da capa, ou uma imagem padrão caso não exista.
   const urlCapa = livro.cover_i
@@ -31,7 +33,8 @@ export function CartaoLivro({ livro, onClick }: CartaoLivroProps) {
       overflow="hidden"
       shadow="sm"
       _hover={{ shadow: 'lg', transform: 'scale(1.02)', transition: '0.2s', cursor: 'pointer' }}
-      bg="white"
+      bg="#1E1E1E"
+      borderColor="	#2C2C2C"
       w="100%"
       maxW="300px"
       position={'relative'}
@@ -61,26 +64,26 @@ export function CartaoLivro({ livro, onClick }: CartaoLivroProps) {
         {
           estaFavoritado(livro)
           ?
-            <FaStar color='#b6de02'/>
+            <FaStar color='#FFD700'/>
           :
-            <FaRegStar color='#b6de02'/>
+            <FaRegStar color='#FFD700'/>
         }
       </IconButton>
 
       {/* 'VStack' empilha as informações de texto verticalmente com espaçamento e alinhamento. */}
       <VStack p={4} align="start" spacing={2}>
         {/* 'Heading' para o título. 'isTruncated' adiciona "..." se o texto for muito longo. */}
-        <Heading as="h3" fontSize="lg" isTruncated title={livro.title}>
+        <Heading as="h3" color="#F1F1F1" fontSize="lg" isTruncated title={livro.title}>
           {livro.title}
         </Heading>
 
         {/* 'Text' para o autor. 'noOfLines={2}' limita o texto a no máximo duas linhas. */}
-        <Text fontSize="md" color="gray.700" noOfLines={2}>
+        <Text fontSize="md" color="	#B0B0B0" noOfLines={2}>
           {livro.author_name?.join(', ') || 'Autor desconhecido'}
         </Text>
 
         {/* 'Text' para o ano de publicação. */}
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize="sm" color="#B0B0B0">
           Ano: {livro.first_publish_year || 'N/A'}
         </Text>
       </VStack>

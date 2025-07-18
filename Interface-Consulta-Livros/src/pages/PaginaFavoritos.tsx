@@ -16,7 +16,9 @@ import { useState } from "react";
 // Importa o componente de modal que mostra os detalhes do livro
 import { ModalLivro } from "../components/ModalLivro";
 
-// Componente da página que exibe os livros favoritos
+// Componente da página que exibe os livros favoritos.
+// Ele obtém a lista de livros favoritos do contexto e os renderiza em uma grade,
+// permitindo que o usuário visualize os detalhes de cada livro em um modal.
 export const PaginaFavoritos = () => {
   // Obtém a lista de livros favoritos do contexto
   const { favoritos } = useFavoritos();
