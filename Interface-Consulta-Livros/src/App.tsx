@@ -19,6 +19,7 @@ import {
 import { HiMenu } from 'react-icons/hi'; // Ícone de menu (hambúrguer).
 import { PaginaBusca } from './pages/PaginaBusca'; // Componente da página de busca.
 import { PaginaFavoritos } from './pages/PaginaFavoritos';
+import logoImage from './assets/logo.png';
 
 // Cria um componente 'NavLink' que une o Link do React Router com o sistema de estilos do Chakra.
 const NavLink = chakra(RouterLink);
@@ -51,7 +52,7 @@ function App() {
           </Heading>
           {/* Logo ao lado do título */}
           <Image
-            src="./src/assets/logo.png"
+            src={logoImage}
             alt="Ícone de livro"
             boxSize={{ base: "75px", md: "135px" }}
             mt="2"
