@@ -53,7 +53,10 @@ export function CartaoLivro({ livro, onClick }: CartaoLivroProps) {
         position={"absolute"} 
         top={3} 
         right={3}
-        onClick={() => alternarFavorito(livro)}
+        onClick={(event) => {
+          event.stopPropagation();
+          alternarFavorito(livro)
+        }}
       >
         {
           estaFavoritado(livro)
