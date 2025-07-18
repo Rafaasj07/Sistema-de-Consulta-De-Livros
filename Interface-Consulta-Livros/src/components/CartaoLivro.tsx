@@ -1,18 +1,26 @@
-import { Box, Image, Text, Heading, VStack } from '@chakra-ui/react';
+import { Box, Image, Text, Heading, VStack, IconButton  } from '@chakra-ui/react';
 // Importa o "tipo" (interface) Livro para garantir que os dados recebidos estão corretos.
 import type { Livro } from '../types/Livro';
+import { FaRegStar, FaStar } from "react-icons/fa6"; // Ícone do favorito (estrelas)
+//Importa o contexto de favoritos
+import { useFavoritos } from '../context/FavoritosContext';
+
 
 // Define a "forma" (interface) das propriedades que este componente espera receber.
 interface CartaoLivroProps {
   livro: Livro; // Espera um objeto 'livro' com a estrutura definida em 'Livro'.
+  onClick: (livro: Livro) => void // Espera uma função para ser executada quando clicado
 }
 
 // Exporta um componente funcional que recebe as informações de um livro e as exibe.
-export function CartaoLivro({ livro }: CartaoLivroProps) {
+export function CartaoLivro({ livro, onClick }: CartaoLivroProps) {
   // Define a URL da imagem da capa, ou uma imagem padrão caso não exista.
   const urlCapa = livro.cover_i
     ? `https://covers.openlibrary.org/b/id/${livro.cover_i}-M.jpg`
     : 'https://via.placeholder.com/200x300.png?text=Sem+Capa';
+
+  // Pega as funções de manipulação dos favoritos
+  const { estaFavoritado, alternarFavorito } = useFavoritos();
 
   // Retorna o JSX que representa o cartão do livro.
   return (
@@ -22,10 +30,12 @@ export function CartaoLivro({ livro }: CartaoLivroProps) {
       borderRadius="xl"
       overflow="hidden"
       shadow="sm"
-      _hover={{ shadow: 'lg', transform: 'scale(1.02)', transition: '0.2s' }}
+      _hover={{ shadow: 'lg', transform: 'scale(1.02)', transition: '0.2s', cursor: 'pointer' }}
       bg="white"
       w="100%"
       maxW="300px"
+      position={'relative'}
+      onClick={() => onClick(livro)}
     >
       {/* 'Image' exibe a capa do livro, garantindo que ela preencha o espaço definido. */}
       <Image
@@ -35,6 +45,24 @@ export function CartaoLivro({ livro }: CartaoLivroProps) {
         h="300px"
         objectFit="cover"
       />
+
+      {/* Botão para alternar se o livro está favoritado ou não */}
+      <IconButton 
+        aria-label="Alternar Favorito" 
+        size={"sm"} rounded={"full"} 
+        position={"absolute"} 
+        top={3} 
+        right={3}
+        onClick={() => alternarFavorito(livro)}
+      >
+        {
+          estaFavoritado(livro)
+          ?
+            <FaStar color='#b6de02'/>
+          :
+            <FaRegStar color='#b6de02'/>
+        }
+      </IconButton>
 
       {/* 'VStack' empilha as informações de texto verticalmente com espaçamento e alinhamento. */}
       <VStack p={4} align="start" spacing={2}>

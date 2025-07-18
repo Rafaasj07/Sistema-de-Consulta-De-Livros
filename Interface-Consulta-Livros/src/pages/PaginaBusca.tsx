@@ -19,12 +19,18 @@ import {
   AlertTitle,
   Stack,
 } from '@chakra-ui/react';
+// Importa o "tipo" de livro
+import { Livro } from '../types/Livro';
+// Importa o modal de livro
+import { ModalLivro } from '../components/ModalLivro';
 
 export function PaginaBusca() {
-  // Cria estados para controlar o texto do input, a página atual e o termo que foi de fato pesquisado.
+  // Cria estados para controlar o texto do input, a página atual, o termo que foi de fato pesquisado, se o modal está aberto e o livro selecionado.
   const [termoBusca, setTermoBusca] = useState('');
   const [pagina, setPagina] = useState(1);
   const [termoAtivo, setTermoAtivo] = useState('');
+  const [modalAberto, setModalAberto] = useState(false);
+  const [livroSelecionado, setLivroSelecionado] = useState<Livro | null>(null);
 
   // 'useQuery' gerencia a chamada à API.
   const { data, isPending, isError } = useQuery({
@@ -43,6 +49,18 @@ export function PaginaBusca() {
     setPagina(1); // Reseta para a primeira página a cada nova busca.
     setTermoAtivo(termoBusca); // Define o termo ativo, o que dispara o 'useQuery'.
   };
+
+  // Função para abrir o modal
+  function abrirModal(livro: Livro) {
+    setLivroSelecionado(livro);
+    setModalAberto(true);
+  }
+
+  // Função para fechar o modal
+  function fecharModal() {
+    setModalAberto(false);
+    setLivroSelecionado(null);
+  }
 
   // Retorna o JSX que será renderizado na tela.
   return (
@@ -96,9 +114,12 @@ export function PaginaBusca() {
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 5 }} gap={6}>
         {/* Mapeia os dados recebidos ('data.docs') e renderiza um 'CartaoLivro' para cada livro. */}
         {data?.docs.map((livro) => (
-          <CartaoLivro key={livro.key} livro={livro} />
+          <CartaoLivro key={livro.key}  livro={livro} onClick={abrirModal} />
         ))}
       </SimpleGrid>
+
+      {/* Modal com detalhes */}
+      <ModalLivro isOpen={modalAberto} onClose={fecharModal} livro={livroSelecionado} />
 
       {/* Renderização condicional: mostra os controles de paginação apenas se houver resultados. */}
       {data && data.docs.length > 0 && (

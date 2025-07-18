@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { HiMenu } from 'react-icons/hi'; // Ícone de menu (hambúrguer).
 import { PaginaBusca } from './pages/PaginaBusca'; // Componente da página de busca.
+import { PaginaFavoritos } from './pages/PaginaFavoritos';
 
 // Cria um componente 'NavLink' que une o Link do React Router com o sistema de estilos do Chakra.
 const NavLink = chakra(RouterLink);
@@ -90,7 +91,7 @@ function App() {
         <Routes>
           {/* 'Route' mapeia uma URL (path) para um componente específico (element). */}
           <Route path="/" element={<PaginaBusca />} />
-          <Route path="/favoritos" element={<Box p={5}>Página de Favoritos (a ser construída)</Box>} />
+          <Route path="/favoritos" element={<PaginaFavoritos/>} />
         </Routes>
       </main>
     </Box>
